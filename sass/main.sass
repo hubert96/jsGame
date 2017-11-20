@@ -4,13 +4,78 @@
 	66% {background: url('../images/carrots_stage_2.png')}
 	100% {background: url('../images/carrots_stage_3.png')}
 
+@keyframes brokenObject
+	from 
+		width: 0
+		height: 0
+		top: 50%
+		left: 50%
+	// 25%
+	// 	width: 33%
+	// 	height: 33%
+	// 	top: 37.5%
+	// 	left: 37.5%
+	// 50%
+	// 	width: 66%
+	// 	height: 66%
+	// 	top: 25%
+	// 	left: 25%
+	// 75%
+	// 	width: 100%
+	// 	height: 100%
+	// 	top: 12.5%
+	// 	left: 12.5%
+	to 
+		width: 100%
+		height: 100%
+		top: 0%
+		left: 0%
+
+@keyframes moveLeft
+	0%
+		left: 64px
+	100%
+		left: 0
+
+@keyframes moveLeftTop
+	0%
+		left: 64px
+		top: 64px
+	100%
+		left: 0
+		top: 0
+@keyframes moveBottom
+	0%
+		top: -64px
+	100%
+		top: 0
+@keyframes moveRight
+	0%
+		left: -64px
+	100%
+		left: 0
+@keyframes moveRightTop
+	0%
+		left: -64px
+		top: 64px
+	100%
+		left: 0
+		top: 0
+
+*
+	filter: brightness(100%) 
 
 body
-	margin 0 auto
+	margin: 0
+
+h3
+	margin: 0 auto
+	text-align: center
 
 .gameWindow
 	margin: 0 auto
 	background: black
+	position: relative
 	.field
 		display: flex
 		align-items: center
@@ -18,8 +83,92 @@ body
 		float: left
 		font-size: 8px
 		box-sizing: border-box
-	
+		position: relative
+		background: lightblue
+	.prompt
+	 	position: absolute
+	 	top: 79px
+	 	right: 15px
+	 	padding: 15px
+	 	border-radius: 10px
+	 	background: rgba(0, 0, 0, 0.5)
+
+.inventoryPanel 
+	margin: 30px auto
+	height: 68px
+	//border: 2px solid red
+	box-sizing: border-box
+	background: lightgrey
+	.field
+		display: flex
+		align-items: center
+		justify-content: center
+		float: left
+		font-size: 8px
+		box-sizing: border-box
+		position: relative
+		background: lightblue
+		
 //Textures
+
+.object
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+
+.objectBroken
+	position: absolute
+	opacity: 0.65
+	background: url('../images/broken.png') no-repeat center
+	animation-name: brokenObject
+	animation-duration: 1s
+	animation-iteration-count: 1
+	animation-fill-mode: forwards;
+
+	img
+		width: 64px
+		height: 64px
+
+.player
+	width: 64px
+	height: 64px
+	background: url('../images/player-front.png')
+	display: flex
+	align-items: flex-end
+	justify-content: center
+	font-size: 32px
+	position: absolute
+	z-index: 3
+.animation
+	animation-duration: 0.3s // IMPORTANT, have to be the same with player.moveTimeout!!!
+	animation-iteration-count: 1
+.moveLeft
+	@extend .animation
+	background:	url('../images/player-left.png')
+	animation-name: moveLeft
+.moveLeftTop
+	@extend .animation
+	background:	url('../images/player-left.png')
+	animation-name: moveLeftTop
+.moveRight
+	@extend .animation
+	background:	url('../images/player-right.png')
+	animation-name: moveRight
+.moveRightTop
+	@extend .animation
+	background:	url('../images/player-right.png')
+	animation-name: moveRightTop
+.moveBottom
+	@extend .animation
+	background:  url('../images/player-down.png')
+	animation-name: moveBottom
+	animation-timing-function: linear;
+
+
+
+
 .dirt
 	background: url('../images/dirt.png')
 
